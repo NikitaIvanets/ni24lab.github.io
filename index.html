@@ -29,10 +29,31 @@
 
     .cursor-img {
       position: fixed;
-      width: 400px;
+      width: 100px;
       pointer-events: none;
       transform: translate(-50%, -50%);
       z-index: 999;
+    }
+
+    /* экран с видео */
+    .video-page {
+      position: fixed;
+      inset: 0;
+      background: #BBBBBB;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .video-page.active {
+      display: flex;
+    }
+
+    video {
+      width: 80%;
+      max-width: 900px;
+      outline: none;
     }
 
     @media (max-width: 768px) {
@@ -51,11 +72,16 @@
 
 <body>
 
-  <!-- основная картинка -->
+  <!-- главная картинка -->
   <img src="image.jpg" class="main-img">
 
   <!-- кастомный курсор -->
-  <img src="image1.jpg" class="cursor-img" id="cursor">
+  <img src="image.jpg" class="cursor-img" id="cursor">
+
+  <!-- видео-экран -->
+  <div class="video-page" id="videoPage">
+    <video id="video" src="0426 (1).mp4" autoplay></video>
+  </div>
 
   <script>
     const cursor = document.getElementById("cursor");
@@ -80,9 +106,20 @@
 
     animate();
 
-    // переход по клику в любое место
+    const videoPage = document.getElementById("videoPage");
+    const video = document.getElementById("video");
+
+    // клик → показать видео-страницу
     document.addEventListener("click", () => {
-      window.location.href = "https://t.me/ni24lab";
+      videoPage.classList.add("active");
+      video.currentTime = 0;
+      video.play();
+    });
+
+    // по окончании видео можно оставить экран или закрыть (по желанию)
+    video.addEventListener("ended", () => {
+      // например, просто остановить на последнем кадре
+      video.pause();
     });
   </script>
 
