@@ -4,28 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ni24lab</title>
+
   <style>
     body {
       margin: 0;
       padding: 0;
+      height: 100vh;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      background: #ffffff;
     }
 
-    .image {
-      width: 100%;
-      height: 50vh;
-      background-image: url('image.jpg');
-      background-size: cover;
-      background-position: center;
+    img {
+      width: 50%;       /* ← размер картинки (ПК) */
+      height: auto;
+      max-width: 800px; /* ограничение, чтобы не была слишком большой */
     }
 
     @media (max-width: 768px) {
-      .image {
-        background-image: url('image-mobile.jpg');
+      img {
+        width: 80%;     /* ← размер на телефоне */
       }
     }
   </style>
 </head>
+
 <body>
-  <div class="image"></div>
+  <img src="image.jpg" alt="ni24lab image">
 </body>
 </html>
