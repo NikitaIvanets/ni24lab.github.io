@@ -17,10 +17,9 @@
       align-items: center;
 
       background: #ffffff;
-      cursor: none; /* убираем стандартный курсор */
+      cursor: none;
     }
 
-    /* основная картинка */
     .main-img {
       width: 50%;
       max-width: 800px;
@@ -28,10 +27,9 @@
       z-index: 1;
     }
 
-    /* курсор-картинка */
     .cursor-img {
       position: fixed;
-      width: 400px; /* размер курсора */
+      width: 400px;
       pointer-events: none;
       transform: translate(-50%, -50%);
       z-index: 999;
@@ -42,7 +40,7 @@
         width: 80%;
       }
       .cursor-img {
-        display: none; /* отключаем на телефоне */
+        display: none;
       }
       body {
         cursor: default;
@@ -56,7 +54,7 @@
   <!-- основная картинка -->
   <img src="image.jpg" class="main-img">
 
-  <!-- картинка-курсор -->
+  <!-- кастомный курсор -->
   <img src="image1.jpg" class="cursor-img" id="cursor">
 
   <script>
@@ -82,117 +80,10 @@
 
     animate();
 
-    // ========== ВОТ ЭТО ЕДИНСТВЕННОЕ, ЧТО Я ДОБАВИЛ ==========
-    document.body.addEventListener("click", () => {
-      window.open("https://t.me/ni24lab", "_blank");
+    // переход по клику в любое место
+    document.addEventListener("click", () => {
+      window.location.href = "https://t.me/ni24lab";
     });
-    // =======================================================
-  </script>
-
-</body>
-</html>      transform: translate(-50%, -50%);
-      z-index: 999;
-    }
-
-    @media (max-width: 768px) {
-      .main-img {
-        width: 80%;
-      }
-      .cursor-img {
-        display: none; /* отключаем на телефоне */
-      }
-      body {
-        cursor: default;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <!-- основная картинка -->
-  <img src="image.jpg" class="main-img">
-
-  <!-- картинка-курсор -->
-  <img src="image1.jpg" class="cursor-img" id="cursor">
-
-  <script>
-    const cursor = document.getElementById("cursor");
-
-    let x = 0, y = 0;
-    let targetX = 0, targetY = 0;
-
-    document.addEventListener("mousemove", (e) => {
-      targetX = e.clientX;
-      targetY = e.clientY;
-    });
-
-    function animate() {
-      x += (targetX - x) * 0.1;
-      y += (targetY - y) * 0.1;
-
-      cursor.style.left = x + "px";
-      cursor.style.top = y + "px";
-
-      requestAnimationFrame(animate);
-    }
-
-    animate();
-
-    // КЛИК ПО ВСЕЙ СТРАНИЦЕ -> ПЕРЕХОД В TELEGRAM
-    document.body.addEventListener("click", () => {
-      window.open("https://t.me/ni24lab", "_blank");
-    });
-  </script>
-
-</body>
-</html>      z-index: 999;
-    }
-
-    @media (max-width: 768px) {
-      .main-img {
-        width: 80%;
-      }
-      .cursor-img {
-        display: none; /* отключаем на телефоне */
-      }
-      body {
-        cursor: default;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <!-- основная картинка -->
-  <img src="image.jpg" class="main-img">
-
-  <!-- картинка-курсор -->
-  <img src="image1.jpg" class="cursor-img" id="cursor">
-
-  <script>
-    const cursor = document.getElementById("cursor");
-
-    let x = 0, y = 0;
-    let targetX = 0, targetY = 0;
-
-    document.addEventListener("mousemove", (e) => {
-      targetX = e.clientX;
-      targetY = e.clientY;
-    });
-
-    function animate() {
-      x += (targetX - x) * 0.1;
-      y += (targetY - y) * 0.1;
-
-      cursor.style.left = x + "px";
-      cursor.style.top = y + "px";
-
-      requestAnimationFrame(animate);
-    }
-
-    animate();
   </script>
 
 </body>
