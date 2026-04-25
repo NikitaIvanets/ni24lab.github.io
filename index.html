@@ -26,15 +26,71 @@
       max-width: 800px;
       height: auto;
       z-index: 1;
+      pointer-events: none; /* чтобы клик проходил сквозь картинку */
     }
 
     /* курсор-картинка */
     .cursor-img {
       position: fixed;
-      width: 250px; /* размер курсора */
+      width: 100px; /* размер курсора */
       pointer-events: none;
       transform: translate(-50%, -50%);
       z-index: 999;
+    }
+
+    @media (max-width: 768px) {
+      .main-img {
+        width: 80%;
+      }
+      .cursor-img {
+        display: none; /* отключаем на телефоне */
+      }
+      body {
+        cursor: default;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- основная картинка -->
+  <img src="image.jpg" class="main-img">
+
+  <!-- картинка-курсор -->
+  <img src="image1.jpg" class="cursor-img" id="cursor">
+
+  <script>
+    const cursor = document.getElementById("cursor");
+
+    let x = 0, y = 0;
+    let targetX = 0, targetY = 0;
+
+    document.addEventListener("mousemove", (e) => {
+      targetX = e.clientX;
+      targetY = e.clientY;
+    });
+
+    function animate() {
+      x += (targetX - x) * 0.1;
+      y += (targetY - y) * 0.1;
+
+      cursor.style.left = x + "px";
+      cursor.style.top = y + "px";
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    // КЛИК ПО ВСЕЙ СТРАНИЦЕ -> ПЕРЕХОД В TELEGRAM
+    document.body.addEventListener("click", () => {
+      window.open("https://t.me/ni24lab", "_blank");
+    });
+  </script>
+
+</body>
+</html>      z-index: 999;
     }
 
     @media (max-width: 768px) {
