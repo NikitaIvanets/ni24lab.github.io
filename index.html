@@ -10,29 +10,78 @@
       margin: 0;
       padding: 0;
       height: 100vh;
+      overflow: hidden;
 
       display: flex;
       justify-content: center;
       align-items: center;
 
       background: #ffffff;
+      cursor: none; /* убираем стандартный курсор */
     }
 
-    img {
-      width: 50%;       /* ← размер картинки (ПК) */
+    /* основная картинка */
+    .main-img {
+      width: 50%;
+      max-width: 800px;
       height: auto;
-      max-width: 800px; /* ограничение, чтобы не была слишком большой */
+      z-index: 1;
+    }
+
+    /* курсор-картинка */
+    .cursor-img {
+      position: fixed;
+      width: 100px; /* размер курсора */
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      z-index: 999;
     }
 
     @media (max-width: 768px) {
-      img {
-        width: 80%;     /* ← размер на телефоне */
+      .main-img {
+        width: 80%;
+      }
+      .cursor-img {
+        display: none; /* отключаем на телефоне */
+      }
+      body {
+        cursor: default;
       }
     }
   </style>
 </head>
 
 <body>
-  <img src="image.jpg" alt="ni24lab image">
+
+  <!-- основная картинка -->
+  <img src="image.jpg" class="main-img">
+
+  <!-- картинка-курсор -->
+  <img src="image1.jpg" class="cursor-img" id="cursor">
+
+  <script>
+    const cursor = document.getElementById("cursor");
+
+    let x = 0, y = 0;
+    let targetX = 0, targetY = 0;
+
+    document.addEventListener("mousemove", (e) => {
+      targetX = e.clientX;
+      targetY = e.clientY;
+    });
+
+    function animate() {
+      x += (targetX - x) * 0.1;
+      y += (targetY - y) * 0.1;
+
+      cursor.style.left = x + "px";
+      cursor.style.top = y + "px";
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
+
 </body>
 </html>
